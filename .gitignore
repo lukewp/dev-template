@@ -1,0 +1,65 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# R and RStudio files
+.Rhistory
+.RData
+.Rproj.user/
+.Ruserdata
+*.Rproj
+
+# Quarto / Jupyter notebooks
+*.ipynb_checkpoints
+*.nb.html
+*.qmd
+
+# Environment files
+.env
+.env.*
+*.Renv
+.venv/
+renv/
+renv.lock
+
+# macOS files
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+~*
+
+# Node modules (if you ever use JS tools)
+node_modules/
+
+# Compiled binary artifacts
+*.o
+*.so
+*.exe
+*.out
+
+# Docker-related
+*.pid
+*.tar
+
+# Data and output directories
+/data/raw/
+/data/processed/
+/output/
+
+# Coverage and test reports
+coverage/
+*.lcov
+
+# Misc
+*.sqlite
+*.db
+*.lock
