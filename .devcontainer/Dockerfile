@@ -18,23 +18,37 @@ RUN apt-get update && apt-get install -y \
     r-base \
     python3 \
     python3-pip \
+    python3-venv \
+    python3-setuptools \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Optional: Set default shell to bash or zsh
 SHELL ["/bin/bash", "-c"]
 
-# Optional: Install Python packages
+# Setup Python virtual environment
+RUN python3 -m venv /opt/venv \
+    && /opt/venv/bin/pip install --no-cache-dir --upgrade pip setuptools
+
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Install Python packages
 RUN pip3 install --no-cache-dir --upgrade pip setuptools
 
 # Optional: Create non-root user (works with devcontainers)
 ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=1000
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME
+# Prevent user creation failure if the vscode group already exists
+RUN if ! getent group $USERNAME >/dev/null; then \
+      groupadd --gid $USER_GID $USERNAME; \
+    fi \
+ && if ! id $USERNAME >/dev/null 2>&1; then \
+      useradd --uid $USER_UID --gid $USER_GID -m $USERNAME; \
+    fi \
+ && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USERNAME \
+ && chmod 0440 /etc/sudoers.d/$USERNAME
+
 
 # Set work directory
 WORKDIR /workspace

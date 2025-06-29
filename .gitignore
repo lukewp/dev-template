@@ -17,7 +17,6 @@ __pycache__/
 
 # Environment files
 .env
-.env.*
 *.Renv
 .venv/
 renv/
@@ -52,7 +51,9 @@ node_modules/
 
 # Data and output directories
 /data/raw/
+!/data/raw/raw_data.md
 /data/processed/
+!/data/processed/processed_data.md
 /output/
 
 # Coverage and test reports
