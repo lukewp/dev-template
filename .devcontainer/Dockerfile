@@ -39,6 +39,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
 # Set work directory
 WORKDIR /workspace
 
+# R tidyverse and renv setup:
+RUN Rscript -e "install.packages(c('tidyverse', 'renv'), repos='https://cloud.r-project.org/')"
+
 # Set environment variables (example only)
 ENV LANG=C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
