@@ -9,9 +9,6 @@
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
       "version": "latest"
-    },
-    "ghcr.io/devcontainers/features/r:1": {
-      "version": "latest"
     }
   },
   "postCreateCommand": "pip install -r requirements.txt || true",
