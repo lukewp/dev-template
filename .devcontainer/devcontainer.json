@@ -36,5 +36,7 @@
   },
   "mounts": [
     "source=${localWorkspaceFolder}/data,target=/workspace/data,type=bind"
-  ]
+  ],
+  "forwardPorts": [8080],
+  "remoteUser": "vscode"
 }
